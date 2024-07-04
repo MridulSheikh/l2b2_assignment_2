@@ -83,10 +83,10 @@ const updateSingleProductController = async (req: Request, res: Response) => {
       message: 'Product Update successfully!',
       data: response,
     });
-  } catch (error) {
+  } catch (error: any) {
     res.status(status.BAD_REQUEST).send({
       suceess: false,
-      message: 'Failed to update product. Please try again.',
+      message: error.message || 'Failed to update product. Please try again.',
     });
   }
 };

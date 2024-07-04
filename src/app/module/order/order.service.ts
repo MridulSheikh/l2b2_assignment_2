@@ -12,7 +12,7 @@ const createOrderService = async (payload: IOrders) => {
 
   // check product in stock or not
   if (isProductExist.inventory.quantity < payload.quantity) {
-    throw Error('insufficient stock!');
+    throw Error('Insufficient quantity available in inventory');
   }
   const result = await Order.create(payload);
   const updatedData = await Product.findByIdAndUpdate(
@@ -41,6 +41,9 @@ const getAllOrderFromDbService = async (email: string) => {
     pipeline.unshift({ $match: { email: email } });
   }
   const result = await Order.aggregate(pipeline);
+  if (result.length === 0) {
+    throw Error('Order not found');
+  }
   return result;
 };
 

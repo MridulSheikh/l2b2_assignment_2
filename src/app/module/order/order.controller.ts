@@ -14,7 +14,7 @@ const createOrderController = async (req: Request, res: Response) => {
     });
   } catch (error: any) {
     res.status(httpStatus.BAD_REQUEST).send({
-      success: true,
+      success: false,
       message: error.message || 'Something went wrong!',
     });
   }
@@ -33,7 +33,7 @@ const getAllOrderFromDBController = async (req: Request, res: Response) => {
     });
   } catch (error: any) {
     res.status(httpStatus.BAD_REQUEST).send({
-      success: true,
+      success: false,
       message: error.message || 'Something went wrong!',
     });
   }
