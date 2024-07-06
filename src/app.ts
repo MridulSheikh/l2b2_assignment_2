@@ -10,7 +10,7 @@ app.use(express.json());
 app.use(cors());
 
 // application routes
-app.use('/api/v1', allRoutes);
+app.use('/api', allRoutes);
 
 const test = async (req: Request, res: Response) => {
   res.status(200).send({
