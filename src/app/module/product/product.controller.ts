@@ -5,12 +5,10 @@ import status from 'http-status';
 const createProductController = async (req: Request, res: Response) => {
   try {
     const result = await productService.createProductIntoDBService(req.body);
-    const response = { ...(result as any)._doc };
-    delete response._id;
     res.status(status.CREATED).send({
       success: true,
       message: 'Product created successfully!',
-      data: response,
+      data: result,
     });
   } catch (error: any) {
     res.status(status.BAD_REQUEST).send({
